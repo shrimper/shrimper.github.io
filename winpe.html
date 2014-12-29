@@ -22,9 +22,11 @@
           
 
             <section id="downloads">
-              <a class="zip_download_link" href="https://raw.githubusercontent.com/shrimper/shrimper.github.io/master/software/winpe/PE_XP_7_8_wifi_tools.zip">下载 .zip file</a>
+              <a class="zip_download_link" href="https://dl-web.dropbox.com/get/temp/PE_XP_7_8_wifi_tools.zip?_subject_uid=120231439&w=AAAuaJ2uWW82zYpsouslt5rVbnO-QxrxAYOiJlHgOUzY0Q&dl=1
+">下载 .zip file</a>
               <br/><br/><br/>
-              <a href="https://raw.githubusercontent.com/shrimper/shrimper.github.io/master/software/winpe/PE_XP_7_8_wifi_tools.zip">暂无下载，切勿任性！</a>
+              <a href="https://dl-web.dropbox.com/get/temp/PE_XP_7_8_wifi_tools.zip?_subject_uid=120231439&w=AAAuaJ2uWW82zYpsouslt5rVbnO-QxrxAYOiJlHgOUzY0Q&dl=1
+">暂无下载，切勿任性！</a>
             </section>
         </header>
     </div>
@@ -40,7 +42,7 @@
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>简介：</h3>
 
 <p>
- 本工具包括PE系统均来自网络收集，加上个人按需修改和简化，用于测试和学习使用，wifi破解系统和工具仅限于无线安全测试使用。本软件所有内容均可任意修改自由复制。工具库里内附有各类小修改工具，可自由用于学习修改各类系统文件。
+ 本工具包括PE系统均来自网络收集，加上个人按需修改和简化，用于测试和学习使用，wifi密码破解系统和工具仅限于无线安全测试使用。本软件所有内容均可任意修改自由复制。工具库里内附有各类小修改工具，可自由用于学习修改各类系统文件。
 </p>
 
 <pre><code>
@@ -90,11 +92,13 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Robot-Creator &copy; 2014</p>
+        <p class="copyright">Robot-Creator &copy; <b id="bdate"></b></p>
          </footer>
     </div>
 
               <script type="text/javascript">
+              var d = new Date();
+              document.getElementById("bdate").innerHTML=d.getFullYear();
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
