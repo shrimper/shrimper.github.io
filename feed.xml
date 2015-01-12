@@ -6,9 +6,103 @@
 </description>
     <link>http://www.33coming.com/</link>
     <atom:link href="http://www.33coming.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 13 Jan 2015 02:59:43 +1000</pubDate>
-    <lastBuildDate>Tue, 13 Jan 2015 02:59:43 +1000</lastBuildDate>
+    <pubDate>Tue, 13 Jan 2015 09:57:28 +1000</pubDate>
+    <lastBuildDate>Tue, 13 Jan 2015 09:57:28 +1000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>33中医堂! 专业中医针灸、推拿按摩！学生优惠！</title>
+        <description>&lt;h3 id=&quot;section&quot;&gt;33中医堂&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;我们汇聚了 广州中医药大学，在校中医针灸推拿按摩专业学生团队。我们以优惠的价格，为广大群众、大学城各高校邻里同学，乡亲们，提供满意优质的服务。为您从疲劳的工作生活学习中，放松胫骨，恢复活力，重新回到高兴愉快的心情。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;地图&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://api.map.baidu.com/staticimage?center=113.41511,23.065076&amp;amp;markers=广州中医药大学大学城校区&amp;amp;width=740&amp;amp;height=300&amp;amp;zoom=18&amp;amp;markerStyles=s,A,0xff0000&quot; alt=&quot;An image; this is the alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;价格&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;table&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th style=&quot;text-align: center&quot;&gt;时间&lt;/th&gt;
+        &lt;th style=&quot;text-align: center&quot;&gt;价格&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;1小时&lt;/td&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;15元&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;2小时&lt;/td&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;30元&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;3小时&lt;/td&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;45元&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;4小时&lt;/td&gt;
+        &lt;td style=&quot;text-align: center&quot;&gt;60元&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;预约&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;预约人姓名: &lt;input type=&quot;text&quot; id=&quot;fname&quot; /&gt;&lt;br /&gt;
+预约人电话: &lt;input type=&quot;text&quot; id=&quot;fphone&quot; /&gt;&lt;br /&gt;
+预约人时间: &lt;input type=&quot;text&quot; id=&quot;ftime&quot; /&gt;&lt;br /&gt;
+&lt;select id=&quot;hrs&quot;&gt;
+  &lt;option value=&quot;1小时&quot;&gt;1小时&lt;/option&gt;
+  &lt;option value=&quot;2小时&quot;&gt;2小时&lt;/option&gt;
+  &lt;option value=&quot;3小时&quot;&gt;3小时&lt;/option&gt;
+  &lt;option value=&quot;4小时&quot;&gt;4小时&lt;/option&gt;
+&lt;/select&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;input type=&quot;button&quot; onclick=&quot;do_submit()&quot; value=&quot;预约提交&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+function do_submit(){
+	var fname = document.getElementById(&quot;fname&quot;);
+	var fphone = document.getElementById(&quot;fphone&quot;);
+	var ftime = document.getElementById(&quot;ftime&quot;);
+	var fhrs = document.getElementById(&quot;hrs&quot;);
+	alert(&quot;预约人:&quot;+fname.value+&quot; - 电话:&quot;+fphone.value+&quot; - 时间:&quot;+ftime.value+&quot; - 购买:&quot;+fhrs.value);
+}
+&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;联系&lt;/h3&gt;
+
+&lt;blockquote&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;电话：(编辑中)&lt;/li&gt;
+    &lt;li&gt;手机：(编辑中)&lt;/li&gt;
+    &lt;li&gt;微信：33coming&lt;/li&gt;
+    &lt;li&gt;微博：33coming&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+</description>
+        <pubDate>Tue, 13 Jan 2015 20:49:13 +1000</pubDate>
+        <link>http://www.33coming.com/blog/2015/01/13/33%E4%B8%AD%E5%8C%BB%E9%A6%86.html</link>
+        <guid isPermaLink="true">http://www.33coming.com/blog/2015/01/13/33%E4%B8%AD%E5%8C%BB%E9%A6%86.html</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>33来活动!</title>
