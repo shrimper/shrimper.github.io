@@ -73,11 +73,13 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Robot-Creator &copy; 2014</p>
+        <p class="copyright">Robot-Creator &copy; <b id="bdate"></b></p>
          </footer>
     </div>
 
               <script type="text/javascript">
+              var d = new Date();
+              document.getElementById("bdate").innerHTML=d.getFullYear();
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
