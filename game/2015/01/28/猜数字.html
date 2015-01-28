@@ -127,7 +127,7 @@
   </header>
 
   <article class="post-content">
-    <p>神奇的数字，必须猜对数字，和猜中数字完整的每个位子才行。</p>
+    <p>神奇的数字，必须完整的猜中数字每个位子才行。</p>
  <div class="container-narrow">
 
       <!-- <div class="masthead">
@@ -181,6 +181,7 @@
     var inputNumberBoxes = document.getElementById('input_div');
     var count = 0;
     var a = 0, b = 0;
+    var reuslts_array = [];
 
     e.type = "password";
 
@@ -266,14 +267,23 @@
         }
       };
       guess.length!=nbit?result="输入数字犯规":
-      result = "第"+(++count)+"次猜 "+guess+" － 结果:"+a+"中"+b+"对";
-      if (count > 50) {
-        a==nbit?r.innerHTML = "<span style='color:green'>"+result+"</span><br/><span style='color:red'>恭喜您猜中了！</span>"+"<br/>":
-        r.innerHTML = "<span style='color:black'>"+result+"</span>"+"<br/>";
-      } else {
-        a==nbit?r.innerHTML += "<span style='color:green'>"+result+"</span><br/><span style='color:red'> 恭喜您猜中了！</span>"+"<br/>":
-        r.innerHTML += "<span style='color:black'>"+result+"</span>"+"<br/>";
-      }
+      
+      result = "第"+(++count)+"次猜 "+guess+" － 结果:"+a+"中"+b+"对"+"<br/>";
+      a==nbit?result = "<span style='color:red'>恭喜您猜中了！</span><br/>"+"<span style='color:green'>"+result+"</span>":
+      result = "<span style='color:black'>"+result+"</span>";
+      reuslts_array.push(result);
+      r.innerHTML = "";
+      for (var i = reuslts_array.length - 1; i >= 0; i--) {
+        r.innerHTML += reuslts_array[i];
+      };
+
+      // if (count > 50) {
+      //   a==nbit?r.innerHTML = "<span style='color:green'>"+result+"</span><br/><span style='color:red'>恭喜您猜中了！</span>"+"<br/>":
+      //   r.innerHTML = "<span style='color:black'>"+result+"</span>"+"<br/>";
+      // } else {
+      //   a==nbit?r.innerHTML += "<span style='color:green'>"+result+"</span><br/><span style='color:red'> 恭喜您猜中了！</span>"+"<br/>":
+      //   r.innerHTML += "<span style='color:black'>"+result+"</span>"+"<br/>";
+      // }
       
     }
     function random() {
