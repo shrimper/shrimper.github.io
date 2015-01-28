@@ -152,8 +152,9 @@
     <a onclick="autoGuess();" class="btn btn-large btn-success" href="javascript:void(0)">随机猜</a>
     <a onclick="random();" class="btn btn-large btn-success" href="javascript:void(0)">随机数</a><br/><br/>
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
-    <a onclick="guess();" class="btn btn-large btn-success" href="javascript:void(0)">猜</a>
-    <input id="pText" class="form-control" type="text" placeholder="input number here"><br/>
+    <a onclick="guess();" class="btn btn-large btn-success" href="javascript:void(0)">猜</a><br/>
+    <input id="pText" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number"><br/>
+    <div id="input_div"></div>
     <div id="Result"></div>
       </div>
 
@@ -166,7 +167,7 @@
     </div> <!-- /container -->
 
   <script>
-    document.getElementById('copyright').innerHTML += new Date().getFullYear();
+    // document.getElementById('copyright').innerHTML += new Date().getFullYear();
   </script>
   
   <script>
@@ -174,6 +175,7 @@
     var p = document.getElementById('pText');
     var e = document.getElementById('eText');
     var n = document.getElementById('nBit');
+    var inputNumberBoxes = document.getElementById('input_div');
     var count = 0;
     var a = 0, b = 0;
 
@@ -185,6 +187,42 @@
     }
     n.selectedIndex = 3;
     p.maxLength = n.selectedIndex + 1;
+
+    function createInputNumberSelectionBoxes() {
+      inputNumberBoxes.innerHTML ="";
+      for (var n=0;n<p.maxLength;n++) {
+        var num_select = document.createElement("select");
+        num_select.id = "s"+n;
+        num_select.style.width="45px";
+        num_select.onchange=function(){ update() };
+        inputNumberBoxes.appendChild(num_select);
+        for (var i=0;i<10;i++) {
+          var option = document.createElement("option");
+          option.text = i;
+          option.value = i;
+          num_select.add(option);
+        }
+      }
+
+    }
+
+    createInputNumberSelectionBoxes();
+    update();
+    random();
+
+    function update() {
+      p.value="";
+      for (var n=0;n<p.maxLength;n++) {
+        var s = document.getElementById('s'+n);
+        p.value += s.value;
+      }
+    }
+    function updateUI(){
+      for (var n=0;n<p.value.length;n++) {
+        var s = document.getElementById('s'+n);
+        s.selectedIndex = p.value[n];
+      }
+    }
 
     function autoGuess() {
       var nbit = n.value;
@@ -224,6 +262,7 @@
       p.value="";
       e.value=getNumbers();
       p.maxLength = n.selectedIndex + 1;
+      createInputNumberSelectionBoxes();
     }
     function getNumbers() {
       var num,str="";
@@ -280,20 +319,20 @@
 
 
   <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2015-01-28 20:49:13 +1000" data-title="猜数字!" data-url="http://www.33coming.com/game/2015/01/28/%E7%8C%9C%E6%95%B0%E5%AD%97.html"></div>
+  <div class="ds-thread" data-thread-key="2015-01-28 20:49:13 +1000" data-title="猜数字!" data-url="http://www.33coming.com/game/2015/01/28/%E7%8C%9C%E6%95%B0%E5%AD%97.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"33coming"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
 <!-- 多说公共JS代码 end -->
 
  
