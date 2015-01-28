@@ -269,14 +269,17 @@
         }
       };
       guess.length!=nbit?result="输入数字犯规<br/>":
+      p.value = guess;
       
       result = "第"+(++count)+"次猜 "+guess+" － 结果:"+a+"中"+b+"对"+"<br/>";
       a==nbit?result = "<span style='color:red'>恭喜您猜中了！</span><br/>"+"<span style='color:green'>"+result+"</span>":
       result = "<span style='color:black'>"+result+"</span>";
       reuslts_array.push(result);
       r.innerHTML = "";
+      var j = 0;
       for (var i = reuslts_array.length - 1; i >= 0; i--) {
         r.innerHTML += reuslts_array[i];
+        if(++j>=30){break;}
       };
 
       // if (count > 50) {
@@ -297,7 +300,7 @@
       e.value=getNumbers();
       p.maxLength = n.selectedIndex + 1;
       createInputNumberSelectionBoxes();
-      r.innerHTML = "<span style='color:green'>"+p.maxLength+"位的秘密数字已经生成，请聪明的您开始猜猜看是什么数字吧！"+"</span>";
+      r.innerHTML = "<span style='color:green'>"+p.maxLength+"位的秘密数字已经生成<br/>请聪明的您开始猜猜看是什么数字吧！"+"</span>";
     }
     function getNumbers() {
       var num,str="";
