@@ -150,9 +150,9 @@
     </select><br/>
         
     <a onclick="autoGuess();" class="btn btn-large btn-success" href="javascript:void(0)">随机猜</a>
-    <a onclick="random();" class="btn btn-large btn-success" href="javascript:void(0)">随机数</a><br/><br/>
+    <a onclick="random();" class="btn btn-large btn-success" href="javascript:void(0)">随机数</a><br/>
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
-    <a onclick="guess();" class="btn btn-large btn-success" href="javascript:void(0)">猜</a><br/>
+    <a onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br/>
     <input id="pText" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number"><br/>
     <div id="input_div"></div>
     <div id="Result"></div>
@@ -216,12 +216,27 @@
         var s = document.getElementById('s'+n);
         p.value += s.value;
       }
+      updateUI();
     }
     function updateUI(){
-      for (var n=0;n<p.value.length;n++) {
+      p.value = p.value.replace(/[^\d.-]/g, '');
+      p.value = noDups(p.value);
+
+      for (var n=0;n<p.maxLength;n++) {
         var s = document.getElementById('s'+n);
-        s.selectedIndex = p.value[n];
+        p.value[n]!=undefined?s.selectedIndex=p.value[n]:s.selectedIndex=-1;
       }
+    }
+
+    function noDups(s) {
+      var chars = {}, rv = '';
+      for (var i = 0; i < s.length; ++i) {
+        if (!(s[i] in chars)) {
+          chars[s[i]] = 1;
+          rv += s[i];
+        }
+      }
+      return rv;
     }
 
     function autoGuess() {
