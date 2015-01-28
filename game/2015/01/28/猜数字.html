@@ -144,8 +144,9 @@
     
     </select><br />
     <div id="nBit_div"></div>
-    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="margin:-12px" href="javascript:void(0)">猜</a>
-    <a id="guess_auto_button" onclick="autoGuess();" class="btn btn-success btn-success" href="javascript:void(0)">随机猜</a>
+    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="margin:-10px" href="javascript:void(0)">猜</a>
+    <a id="guess_auto_button" onclick="autoGuess(‘false’);" class="btn btn-success btn-success" style="margin:-10px" href="javascript:void(0)">随猜</a>
+    <a id="guess_auto_button_" onclick="autoGuess('true');" class="btn btn-success btn-success" href="javascript:void(0)">强猜</a>
     
     <br />
     
@@ -177,6 +178,7 @@
     var n = document.getElementById('nBit');
     var g = document.getElementById('guess_button');
     var g_auto = document.getElementById('guess_auto_button');
+    var g_auto_ = document.getElementById('guess_auto_button_');
     var inputNumberBoxes = document.getElementById('input_div');
     var nBitDiv = document.getElementById('nBit_div');
     var count = 0;
@@ -337,14 +339,20 @@
       return rv;
     }
 
-    function autoGuess() {
-      // var nbit = n.value;
-      // count = 0, a = 0, b = 0;
-      count<1?r.innerHTML = "":r.innerHTML =r.innerHTML;
-      // do {
+    function autoGuess(bool) {
+      var nbit = n.value;
+      if (bool) {
+        count = 0, a = 0, b = 0;
+        count<1?r.innerHTML = "":r.innerHTML =r.innerHTML;
+        do {
         p.value = getNumbers();
         guess();
-      // }while(a<nbit);
+        }while(a<nbit);
+      } else {
+        count<1?r.innerHTML = "":r.innerHTML =r.innerHTML;
+        p.value = getNumbers();
+        guess();
+      }
       updateUI();
     }
 
@@ -415,6 +423,7 @@
       if (a==nbit) {
         g.style.visibility="hidden";
         g_auto.style.visibility="hidden";
+        g_auto_.style.visibility="hidden";
       }
 
     }
@@ -435,6 +444,7 @@
       nBit.style.visibility="hidden";
       g.style.visibility="hidden";
       g_auto.style.visibility="hidden";
+      g_auto_.style.visibility="hidden";
       p.style.visibility="hidden";
       // reflesh.style.visibility="hidden";
       setTimeout(function(){ 
@@ -444,6 +454,7 @@
       nBit_div.style.visibility="visible";
       g.style.visibility="visible";
       g_auto.style.visibility="visible";
+      g_auto_.style.visibility="visible";
       // p.style.visibility="visible";
       // reflesh.style.visibility="visible";
        }, 2000);
