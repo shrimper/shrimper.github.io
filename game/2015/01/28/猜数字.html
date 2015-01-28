@@ -144,11 +144,14 @@
     
     </select><br />
     <div id="nBit_div"></div>
+    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="margin:-12px" href="javascript:void(0)">猜</a>
     <a id="guess_auto_button" onclick="autoGuess();" class="btn btn-success btn-success" href="javascript:void(0)">随机猜</a>
-    <a id="reflesh_button" onclick="random();" class="btn btn-large btn-info" href="javascript:void(0)">重新</a><br />
+    
+    <br />
     
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
-    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:170px" href="javascript:void(0)">猜</a><br />
+    
+    <br />
     <input id="pText" onchange="return valid()" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number" /><br />
     <div id="input_div"></div>
     <div id="Result"></div>
@@ -174,7 +177,6 @@
     var n = document.getElementById('nBit');
     var g = document.getElementById('guess_button');
     var g_auto = document.getElementById('guess_auto_button');
-    var reflesh = document.getElementById('reflesh_button');
     var inputNumberBoxes = document.getElementById('input_div');
     var nBitDiv = document.getElementById('nBit_div');
     var count = 0;
@@ -194,7 +196,9 @@
     n.selectedIndex = 3;
     p.maxLength = n.selectedIndex + 1;
 
-    nBitDiv.innerHTML = '<a onclick="select_num(this)" id="nbit_btn" class="btn btn-sm btn-warning" href="javascript:void(0)">'+p.maxLength+'位数字</a>';
+    nBitDiv.innerHTML = 
+    '<a onclick="select_num(this)" id="nbit_btn" class="btn btn-sm btn-warning" href="javascript:void(0)" style="margin:-7px;width:100px">'+p.maxLength+'位数字</a>'
+    +'<a id="reflesh_button" onclick="random();" class="btn btn-sm btn-info" href="javascript:void(0)">重新</a>';
 
     function createInputNumberSelectionBoxes() {
       inputNumberBoxes.innerHTML ="";
@@ -417,6 +421,7 @@
 
 
     function random() {
+      // var reflesh = document.getElementById('reflesh_button');
       count = 0;
       r.innerHTML = "<span style='color:green'>闭上眼睛，冥思神秘数字...</span>";
       reuslts_array = [];
@@ -431,7 +436,7 @@
       g.style.visibility="hidden";
       g_auto.style.visibility="hidden";
       p.style.visibility="hidden";
-      reflesh.style.visibility="hidden";
+      // reflesh.style.visibility="hidden";
       setTimeout(function(){ 
       r.innerHTML = "<span style='color:green'>秘密的"+p.maxLength+"位数字已降世...<br/>聪明的您快快打开脑洞...<br/>猜猜看是什么神秘数字吧！"+"</span>";
       // e.style.visibility="visible";
@@ -440,7 +445,7 @@
       g.style.visibility="visible";
       g_auto.style.visibility="visible";
       // p.style.visibility="visible";
-      reflesh.style.visibility="visible";
+      // reflesh.style.visibility="visible";
        }, 2000);
       
     }
