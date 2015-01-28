@@ -262,6 +262,7 @@
     }
     
     function guess() {
+      valid();
       var guess = p.value, answer = e.value;
       var nbit = n.value;
       var result = "";
@@ -273,10 +274,11 @@
       };
       guess = guess.replace(/[^0-9]/g, '');
       guess = noDups(guess);
-      guess.length!=nbit?result="输入数字犯规<br/>":
-      p.value = guess;
-      
+      console.log("guess.length:"+guess.length);
+
       result = "第"+(++count)+"次猜 "+guess+" － 结果:"+a+"中"+b+"对"+"<br/>";
+      guess.length!=nbit?result="<span style='color:orange'>犯规 =_=!</span><br/>":p.value = guess;
+      
       a==nbit?result = "<span style='color:red'>恭喜您猜中了！</span><br/>"+"<span style='color:green'>"+result+"</span>":
       result = "<span style='color:black'>"+result+"</span>";
       reuslts_array.push(result);
