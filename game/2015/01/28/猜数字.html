@@ -52,12 +52,12 @@
         line-height: 1;
       }
       .jumbotron .btn {
+        margin:3px;
         font-size: 21px;
         padding: 14px 24px;
       }
       a.btn.btn-sm{
-        margin:2px;
-        padding: 8px 10px;
+        padding: 10px 10px;
       }
 
       /* Supporting marketing content */
@@ -147,7 +147,7 @@
     <a onclick="random();" class="btn btn-large btn-info" href="javascript:void(0)">重新</a><br />
     
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
-    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br />
+    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:170px" href="javascript:void(0)">猜</a><br />
     <input id="pText" onchange="return valid()" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number" /><br />
     <div id="input_div"></div>
     <div id="Result"></div>
@@ -224,9 +224,20 @@
 
     function select_num(e) {
       var num_select_div = document.getElementById('num_select_div');
+
       num_select_div.innerHTML = "";
+      for (var n=0;n<p.maxLength;n++) {
+        var s = document.getElementById('num_btn'+n);
+        if(s.id != e.id){
+          s.className="btn btn-sm btn-info"
+        }
+      }
+
       for (var i=0;i<10;i++) {
+        p.value.indexOf(i)!=-1?
         num_select_div.innerHTML += 
+        '<a onclick="setNumToBtn(this,\''+e.id+'\')" id="num_btn_'+i+'" class="btn btn-sm btn-warning" href="javascript:void(0)">'+i+'</a>'
+        :num_select_div.innerHTML += 
         '<a onclick="setNumToBtn(this,\''+e.id+'\')" id="num_btn_'+i+'" class="btn btn-sm btn-default" href="javascript:void(0)">'+i+'</a>';
       }
     }
@@ -246,6 +257,7 @@
       p.value="";
       for (var n=0;n<p.maxLength;n++) {
         var s = document.getElementById('num_btn'+n);
+        s.className="btn btn-sm btn-danger"
         p.value += s.innerHTML;
       }
       valid();
@@ -253,10 +265,10 @@
 
     function update() {
       p.value="";
-      for (var n=0;n<p.maxLength;n++) {
-        var s = document.getElementById('s'+n);
-        p.value += s.value;
-      }
+      // for (var n=0;n<p.maxLength;n++) {
+      //   var s = document.getElementById('s'+n);
+      //   p.value += s.value;
+      // }
       updateUI();
     }
     function updateUI(){
@@ -338,7 +350,7 @@
 
       reuslts_array.push(result);
 
-      output_html = '<table border="1" cellpadding="5" style="border-color:#eee;border-collapse: collapse;margin: 0 auto;">'
+      output_html = '<hr /><table border="1" cellpadding="5" style="border-color:#eee;border-collapse: collapse;margin: 0 auto;">'
       +"<tbody><tr>"
       +"<td width='80'>猜次数</td>"
       +"<td width='80'>您猜的数字</td>"
