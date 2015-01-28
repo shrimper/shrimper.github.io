@@ -127,7 +127,7 @@
   </header>
 
   <article class="post-content">
-    <p>神奇的数字</p>
+    <p>神奇的数字，必须猜对数字，和猜中数字完整的每个位子才行。</p>
  <div class="container-narrow">
 
       <!-- <div class="masthead">
@@ -224,7 +224,7 @@
       updateUI();
     }
     function updateUI(){
-      p.value = p.value.replace(/[^\d.-]/g, '');
+      p.value = p.value.replace(/[^0-9]/g, '');
       p.value = noDups(p.value);
 
       for (var n=0;n<p.maxLength;n++) {
