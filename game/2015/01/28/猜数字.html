@@ -271,20 +271,36 @@
       };
       guess = guess.replace(/[^0-9]/g, '');
       guess = noDups(guess);
-      console.log("guess.length:"+guess.length);
+      // console.log("guess.length:"+guess.length);
 
-      result = "第"+(++count)+"次猜 "+guess+" － 结果:"+a+"中"+b+"对"+"<br/>";
+      result = '<table border="1" cellpadding="5" style="border-top-width:0px;border-bottom-width:0px;border-color:#eee;border-collapse: collapse;margin: 0 auto;">'
+      +"<tbody>"
+      +"<tr><td width='80'>第"+(++count)+"次猜</td><td width='80'>"
+      +guess+"</td><td width='80'>"+a+"中"+b+"对"+"</td></tr>"
+      +"</tbody></table>"
+      ;
       guess.length!=nbit?result="<span style='color:orange'>犯规 =_=!</span><br/>":p.value = guess;
       
       a==nbit?result = "<span style='color:red'>恭喜您猜中了！</span><br/>"+"<span style='color:green'>"+result+"</span>":
       result = "<span style='color:black'>"+result+"</span>";
       reuslts_array.push(result);
-      r.innerHTML = "";
+
+      table_cols = '<table border="1" cellpadding="5" style="border-color:#eee;border-collapse: collapse;margin: 0 auto;">'
+      +"<tbody><tr>"
+      +"<td width='80'>猜次数</td>"
+      +"<td width='80'>您猜的数字</td>"
+      +"<td width='80'>结果</td>"
+      +"</tr>"
+      +"</tbody></table>"
+      ;
+      r.innerHTML = table_cols;
+
       var j = 0;
       for (var i = reuslts_array.length - 1; i >= 0; i--) {
         r.innerHTML += reuslts_array[i];
         if(++j>=30){break;}
       };
+
 
       // if (count > 50) {
       //   a==nbit?r.innerHTML = "<span style='color:green'>"+result+"</span><br/><span style='color:red'>恭喜您猜中了！</span>"+"<br/>":
@@ -366,20 +382,20 @@
 
 
   <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="2015-01-28 20:49:13 +1000" data-title="猜数字!" data-url="http://www.33coming.com/game/2015/01/28/%E7%8C%9C%E6%95%B0%E5%AD%97.html"></div>
+  <div class="ds-thread" data-thread-key="2015-01-28 20:49:13 +1000" data-title="猜数字!" data-url="http://www.33coming.com/game/2015/01/28/%E7%8C%9C%E6%95%B0%E5%AD%97.html"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"33coming"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
 <!-- 多说公共JS代码 end -->
 
  
