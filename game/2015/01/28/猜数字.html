@@ -139,12 +139,13 @@
     <input id="eText" class="form-control" type="text" placeholder="Secret number" disabled="true" /><br />
     <!-- <a onclick="return eText.type='text'" href="javascript:void(0)">答案</a> -->
     <!-- <br /> -->
-    <select id="nBit" class="form-control" onchange="random()">
-    </select><br />
 
+    <select id="nBit" class="form-control" onchange="random()">
     
+    </select><br />
+    <div id="nBit_div"></div>
     <a id="guess_auto_button" onclick="autoGuess();" class="btn btn-success btn-success" href="javascript:void(0)">随机猜</a>
-    <a onclick="random();" class="btn btn-large btn-info" href="javascript:void(0)">重新</a><br />
+    <a id="reflesh_button" onclick="random();" class="btn btn-large btn-info" href="javascript:void(0)">重新</a><br />
     
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
     <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:170px" href="javascript:void(0)">猜</a><br />
@@ -173,12 +174,16 @@
     var n = document.getElementById('nBit');
     var g = document.getElementById('guess_button');
     var g_auto = document.getElementById('guess_auto_button');
+    var reflesh = document.getElementById('reflesh_button');
     var inputNumberBoxes = document.getElementById('input_div');
+    var nBitDiv = document.getElementById('nBit_div');
     var count = 0;
     var a = 0, b = 0;
     var reuslts_array = [];
 
     e.type = "password";
+
+    //nBit_div
 
     for (var i=1;i<11;i++) {
       var option = document.createElement("option");
@@ -189,11 +194,16 @@
     n.selectedIndex = 3;
     p.maxLength = n.selectedIndex + 1;
 
+    nBitDiv.innerHTML = '<a onclick="select_num(this)" id="nbit_btn" class="btn btn-sm btn-warning" href="javascript:void(0)">'+p.maxLength+'位数字</a>';
+
     function createInputNumberSelectionBoxes() {
       inputNumberBoxes.innerHTML ="";
       
       var num_select_div = document.createElement("div");
       num_select_div.id = "num_select_div";
+
+      var bit_num_select_div = document.createElement("div");
+      bit_num_select_div.id = "bit_num_select_div";
       
 
       for (var n=0;n<p.maxLength;n++) {
@@ -215,6 +225,7 @@
         '<a onclick="select_num(this)" id="num_btn'+n+'" class="btn btn-sm btn-danger" href="javascript:void(0)">.</a>';
       }
       inputNumberBoxes.appendChild(num_select_div);
+      nBitDiv.appendChild(bit_num_select_div);
 
     }
 
@@ -224,8 +235,10 @@
 
     function select_num(e) {
       var num_select_div = document.getElementById('num_select_div');
-
+      var bit_num_select_div = document.getElementById('bit_num_select_div');
       num_select_div.innerHTML = "";
+      bit_num_select_div.innerHTML = "";
+
       for (var n=0;n<p.maxLength;n++) {
         var s = document.getElementById('num_btn'+n);
         if(s.id != e.id){
@@ -236,16 +249,28 @@
       }
 
       for (var i=0;i<10;i++) {
-        p.value.indexOf(i)!=-1?
+        
+        if (e.id == "nbit_btn") {
+          parseInt(e.innerHTML)==(i+1)?
+          bit_num_select_div.innerHTML += 
+        '<a onclick="setNumToBtn(this,\''+e.id+'\')" id="num_btn_'+i+'" class="btn btn-sm btn-warning" href="javascript:void(0)">'+(i+1)+'</a>'
+        :bit_num_select_div.innerHTML += 
+        '<a onclick="setNumToBtn(this,\''+e.id+'\')" id="num_btn_'+i+'" class="btn btn-sm btn-default" href="javascript:void(0)">'+(i+1)+'</a>';
+        } else {
+          p.value.indexOf(i)!=-1?
         num_select_div.innerHTML += 
         '<a onclick="setNumToBtn(this,\''+e.id+'\')" id="num_btn_'+i+'" class="btn btn-sm btn-warning" href="javascript:void(0)">'+i+'</a>'
         :num_select_div.innerHTML += 
         '<a onclick="setNumToBtn(this,\''+e.id+'\')" id="num_btn_'+i+'" class="btn btn-sm btn-default" href="javascript:void(0)">'+i+'</a>';
+        }
+        
       }
     }
 
     function setNumToBtn(e,id) {
       var num_select_div = document.getElementById('num_select_div');
+      var bit_num_select_div = document.getElementById('bit_num_select_div');
+      var nBit = document.getElementById('nBit');
       var num_btn = document.getElementById(id);
       var index = p.value.indexOf(e.innerHTML);
       
@@ -253,9 +278,16 @@
         var s = document.getElementById('num_btn'+n);
         if(s.innerHTML == e.innerHTML){s.innerHTML=".";}
       }
+      if (num_btn.id == "nbit_btn"){
+        num_btn.innerHTML = e.innerHTML+"位数字";
+        nBit.selectedIndex = parseInt(e.innerHTML)-1;
+        random();
+      } else {
+        num_btn.innerHTML = e.innerHTML;
+      }
 
-      num_btn.innerHTML = e.innerHTML;
       num_select_div.innerHTML = "";
+      bit_num_select_div.innerHTML = "";
       p.value="";
       for (var n=0;n<p.maxLength;n++) {
         var s = document.getElementById('num_btn'+n);
@@ -381,14 +413,6 @@
         g_auto.style.visibility="hidden";
       }
 
-      // if (count > 50) {
-      //   a==nbit?r.innerHTML = "<span style='color:green'>"+result+"</span><br/><span style='color:red'>恭喜您猜中了！</span>"+"<br/>":
-      //   r.innerHTML = "<span style='color:black'>"+result+"</span>"+"<br/>";
-      // } else {
-      //   a==nbit?r.innerHTML += "<span style='color:green'>"+result+"</span><br/><span style='color:red'> 恭喜您猜中了！</span>"+"<br/>":
-      //   r.innerHTML += "<span style='color:black'>"+result+"</span>"+"<br/>";
-      // }
-      
     }
 
 
@@ -401,11 +425,24 @@
       e.value=getNumbers();
       p.maxLength = n.selectedIndex + 1;
       createInputNumberSelectionBoxes();
+      nBit_div.style.visibility="hidden";
+      e.style.visibility="hidden";
+      nBit.style.visibility="hidden";
+      g.style.visibility="hidden";
+      g_auto.style.visibility="hidden";
+      p.style.visibility="hidden";
+      reflesh.style.visibility="hidden";
       setTimeout(function(){ 
-      r.innerHTML = "<span style='color:green'>秘密的"+p.maxLength+"位数字已降世...<br/>请聪明的您打开脑洞...<br/>猜猜看是什么神秘数字吧！"+"</span>";
-       }, 2000);
+      r.innerHTML = "<span style='color:green'>秘密的"+p.maxLength+"位数字已降世...<br/>聪明的您快快打开脑洞...<br/>猜猜看是什么神秘数字吧！"+"</span>";
+      // e.style.visibility="visible";
+      // nBit.style.visibility="visible";
+      nBit_div.style.visibility="visible";
       g.style.visibility="visible";
       g_auto.style.visibility="visible";
+      // p.style.visibility="visible";
+      reflesh.style.visibility="visible";
+       }, 2000);
+      
     }
     function getNumbers() {
       var num,str="";
