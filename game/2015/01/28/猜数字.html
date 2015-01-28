@@ -257,8 +257,6 @@
     }
     
     function guess() {
-      p.value = p.value.replace(/[^0-9]/g, '');
-      p.value = noDups(p.value);
       var guess = p.value, answer = e.value;
       var nbit = n.value;
       var result = "";
@@ -268,6 +266,8 @@
           answer[i] == guess[j]?(i==j?a++:b++):b=b;
         }
       };
+      guess = guess.replace(/[^0-9]/g, '');
+      guess = noDups(guess);
       guess.length!=nbit?result="输入数字犯规<br/>":
       p.value = guess;
       
