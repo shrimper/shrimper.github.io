@@ -181,6 +181,15 @@
     var g_auto_ = document.getElementById('guess_auto_button_');
     var inputNumberBoxes = document.getElementById('input_div');
     var nBitDiv = document.getElementById('nBit_div');
+    var timer_div = document.createElement("div");
+    timer_div.id = "timer_div";
+    timer_div.innerHTML="";
+
+    var startTime = new Date();
+    var endTime = new Date();
+    var myTimerId;
+    var total_timeUserd = 0;
+
     var count = 0;
     var a = 0, b = 0;
     var reuslts_array = [];
@@ -210,8 +219,7 @@
       num_select_div.id = "num_select_div";
 
       var bit_num_select_div = document.createElement("div");
-      bit_num_select_div.id = "bit_num_select_div";
-      
+      bit_num_select_div.id = "bit_num_select_div";      
 
       for (var n=0;n<p.maxLength;n++) {
         // var num_select = document.createElement("select");
@@ -231,6 +239,7 @@
         inputNumberBoxes.innerHTML += 
         '<a onclick="select_num(this)" id="num_btn'+n+'" class="btn btn-sm btn-danger" href="javascript:void(0)">.</a>';
       }
+      nBitDiv.appendChild(timer_div);
       inputNumberBoxes.appendChild(num_select_div);
       nBitDiv.appendChild(bit_num_select_div);
 
@@ -239,6 +248,22 @@
     createInputNumberSelectionBoxes();
     update();
     random();
+
+    
+    function startTimer(){
+      myTimerId=setInterval(function(){myTimer()},10);
+    }
+    function stopTimer(){
+      window.clearInterval(myTimerId);
+      timer_div.innerHTML="";
+    }
+
+    function myTimer() {
+      var d = new Date();
+      var timeUsed = (d - startTime)/1000;
+      timer_div.innerHTML = parseFloat(timeUsed).toFixed(3)+"s";
+    }
+
 
     function select_num(e) {
       var num_select_div = document.getElementById('num_select_div');
@@ -364,6 +389,7 @@
     
     function guess() {
       valid();
+      endTime = new Date();
       var guess = p.value, answer = e.value;
       var nbit = n.value;
       var result = "";
@@ -382,15 +408,33 @@
       // +guess+"</td><td width='80'>"+a+"中"+b+"对"+"</td></tr>"
       // ;
 
+      var timeUsed = (endTime - startTime)/1000 +"s";
+      // console.log(timeUsed);
+      startTime = new Date();
+      total_timeUserd += parseFloat(timeUsed);
+
+      if (a==nbit){
+        stopTimer();
+      }
+
       a==nbit?
       result = "<span style='color:red'>恭喜您猜中了！</span><br/>"
-      +"<tr style='color:green'><td width='80'>第"+(++count)+"次猜</td><td width='80'>"
-      +guess+"</td><td width='80'>"+a+"中"+b+"有"+"</td></tr>"
+      +"<span style='color:gainsboro;font-size:11px'>"
+      +"共猜"+(++count)+"次，耗时:"+parseFloat(total_timeUserd).toFixed(3)+"s"
+      +"</span>"
+      +"<tr style='color:green'><td width='80'>第"+(count)+"次猜</td><td width='80'>"
+      +guess+"</td><td width='80'>"+a+"中"+b+"有"
+      +"</td><td width='80'>"+parseFloat(timeUsed).toFixed(3)+"s"
+      +"</td></tr>"
       :result = "<tr style='color:black'><td width='80'>第"+(++count)+"次猜</td><td width='80'>"
-      +guess+"</td><td width='80'>"+a+"中"+b+"有"+"</td></tr>";
+      +guess+"</td><td width='80'>"+a+"中"+b+"有"
+      +"</td><td width='80'>"+parseFloat(timeUsed).toFixed(3)+"s"
+      +"</td></tr>"
 
       guess.length!=nbit?
-      result = "<tr style='color:orange'><td width='80'>第"+(count)+"次猜</td><td width='80'>犯规 =_=!</td><td width='80'>"+0+"中"+0+"有"+"</td></tr>"
+      result = "<tr style='color:orange'><td width='80'>第"+(count)+"次猜</td><td width='80'>犯规 =_=!</td><td width='80'>"+0+"中"+0+"有"
+      +"</td><td width='80'>"+parseFloat(timeUsed).toFixed(3)+"s"
+      +"</td></tr>"
       :p.value = guess;
 
       guessed.push(guess);
@@ -406,6 +450,7 @@
       +"<td width='80'>猜次数</td>"
       +"<td width='80'>您猜的数字</td>"
       +"<td width='80'>结果</td>"
+      +"<td width='80'>耗时</td>"
       +"</tr>"
       ;
 
@@ -425,11 +470,15 @@
         g_auto_.style.visibility="hidden";
       }
 
+
+
     }
 
 
     function random() {
       // var reflesh = document.getElementById('reflesh_button');
+      total_timeUserd = 0;
+      startTime = new Date();
       guessed = [];
       count = 0;
       r.innerHTML = "<span style='color:green'>闭上眼睛，冥思神秘数字...</span>";
@@ -458,6 +507,8 @@
       // p.style.visibility="visible";
       // reflesh.style.visibility="visible";
        }, 2000);
+
+      startTimer();
       
     }
     function getNumbers() {
