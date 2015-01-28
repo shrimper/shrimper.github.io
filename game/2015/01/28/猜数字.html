@@ -26,8 +26,7 @@
 
     <link rel="stylesheet" href="/css/main.css">
     <link rel="canonical" href="http://www.33coming.com/game/2015/01/28/%E7%8C%9C%E6%95%B0%E5%AD%97.html">
-    <!-- Le styles -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
+        <link href="assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 20px;
@@ -66,18 +65,6 @@
       }
     </style>
     <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="assets/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
 </head>
 
 
@@ -127,8 +114,10 @@
   </header>
 
   <article class="post-content">
-    <p>快来猜猜吧，神奇的数字，考验你的聪明和运气！</p><p>必须完整的猜中数字每个位子才行，一般猜5-8次即可猜中。如果1次即猜中数字，说明你运气大好！</p>
- <div class="container-narrow">
+    <p>快来猜猜吧，神奇的数字，考验你的聪明和运气！</p>
+<p>必须完整的猜中数字每个位子才行，一般猜5-8次即可猜中。如果1次即猜中数字，说明你运气大好！</p>
+
+<div class="container-narrow">
 
       <!-- <div class="masthead">
         <ul class="nav nav-pills pull-right">
@@ -139,25 +128,25 @@
         <h3 class="muted">猜数字</h3>
       </div> -->
 
-      <hr>
+      <hr />
 
       <div class="jumbotron">
         <h1>猜数字!</h1>
         <p class="lead">智力小游戏 </p>
     
-    <input id="eText" class="form-control" type="text" placeholder="Secret number" disabled="true"><br/>
+    <input id="eText" class="form-control" type="text" placeholder="Secret number" disabled="true" /><br />
     <a onclick="return eText.type='text'" href="javascript:void(0)">答案</a>
-    <br/>
+    <br />
     <select id="nBit" class="form-control" onchange="random()">
-    </select><br/>
+    </select><br />
 
     
     <a onclick="autoGuess();" class="btn btn-sm btn-success" href="javascript:void(0)">随机猜</a>
-    <a onclick="random();" class="btn btn-sm btn-info" href="javascript:void(0)">重新</a><br/>
+    <a onclick="random();" class="btn btn-sm btn-info" href="javascript:void(0)">重新</a><br />
     
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
-    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br/>
-    <input id="pText" onchange="return valid()" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number"><br/>
+    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br />
+    <input id="pText" onchange="return valid()" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number" /><br />
     <div id="input_div"></div>
     <div id="Result"></div>
       </div>
@@ -168,13 +157,14 @@
         <p id="copyright">&copy; laiweijun </p>
       </div> -->
     
-    </div> <!-- /container -->
+    </div>
+<p><!-- /container --></p>
 
-  <script>
+<script>
     // document.getElementById('copyright').innerHTML += new Date().getFullYear();
   </script>
-  
-  <script>
+
+<script>
     var r = document.getElementById('Result');
     var p = document.getElementById('pText');
     var e = document.getElementById('eText');
@@ -352,10 +342,12 @@
     }
   </script>
 
+
   </article>
 
+
  <!-- disqus评论框 start -->
-<div id="disqus_thread"></div>
+<!-- <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = '33coming'; // required: replace example with your forum shortname
@@ -367,7 +359,7 @@
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
    <!-- disqus评论框 end --> 
 
    
