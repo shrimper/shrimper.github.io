@@ -155,7 +155,7 @@
     <a onclick="return eText.type='text'" class="btn btn-large btn-success" href="javascript:void(0)">答案</a><br/>
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
     <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br/>
-    <input id="pText" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number"><br/>
+    <input id="pText" onchange="return valid()" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number"><br/>
     <div id="input_div"></div>
     <div id="Result"></div>
       </div>
@@ -232,6 +232,11 @@
         var s = document.getElementById('s'+n);
         p.value[n]!=undefined?s.selectedIndex=p.value[n]:s.selectedIndex=-1;
       }
+    }
+
+    function valid(){
+      p.value = p.value.replace(/[^0-9]/g, '');
+      p.value = noDups(p.value);
     }
 
     function noDups(s) {
