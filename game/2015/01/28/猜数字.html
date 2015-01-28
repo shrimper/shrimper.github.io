@@ -26,7 +26,7 @@
 
     <link rel="stylesheet" href="/css/main.css">
     <link rel="canonical" href="http://www.33coming.com/game/2015/01/28/%E7%8C%9C%E6%95%B0%E5%AD%97.html">
-        <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 20px;
@@ -55,6 +55,10 @@
         font-size: 21px;
         padding: 14px 24px;
       }
+      a.btn.btn-sm{
+        margin:2px;
+        padding: 8px 10px;
+      }
 
       /* Supporting marketing content */
       .marketing {
@@ -64,7 +68,8 @@
         margin-top: 28px;
       }
     </style>
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- <link href="assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    
 </head>
 
 
@@ -91,9 +96,6 @@
           
         
           
-        
-          
-        
           
         
       </div>
@@ -135,14 +137,14 @@
         <p class="lead">智力小游戏 </p>
     
     <input id="eText" class="form-control" type="text" placeholder="Secret number" disabled="true" /><br />
-    <a onclick="return eText.type='text'" href="javascript:void(0)">答案</a>
-    <br />
+    <!-- <a onclick="return eText.type='text'" href="javascript:void(0)">答案</a> -->
+    <!-- <br /> -->
     <select id="nBit" class="form-control" onchange="random()">
     </select><br />
 
     
-    <a id="guess_auto_button" onclick="autoGuess();" class="btn btn-sm btn-success" href="javascript:void(0)">随机猜</a>
-    <a onclick="random();" class="btn btn-sm btn-info" href="javascript:void(0)">重新</a><br />
+    <a id="guess_auto_button" onclick="autoGuess();" class="btn btn-success btn-success" href="javascript:void(0)">随机猜</a>
+    <a onclick="random();" class="btn btn-large btn-info" href="javascript:void(0)">重新</a><br />
     
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
     <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br />
@@ -189,25 +191,65 @@
 
     function createInputNumberSelectionBoxes() {
       inputNumberBoxes.innerHTML ="";
+      
+      var num_select_div = document.createElement("div");
+      num_select_div.id = "num_select_div";
+      
+
       for (var n=0;n<p.maxLength;n++) {
-        var num_select = document.createElement("select");
-        num_select.id = "s"+n;
-        num_select.style.width="45px";
-        num_select.onchange=function(){ update() };
-        inputNumberBoxes.appendChild(num_select);
-        for (var i=0;i<10;i++) {
-          var option = document.createElement("option");
-          option.text = i;
-          option.value = i;
-          num_select.add(option);
-        }
+        // var num_select = document.createElement("select");
+        // num_select.id = "s"+n;
+        // num_select.style.width="45px";
+        // num_select.onchange=function(){ update() };
+        // num_select.style.visibility = "hidden";
+        // inputNumberBoxes.appendChild(num_select);
+
+        // for (var i=0;i<10;i++) {
+        //   var option = document.createElement("option");
+        //   option.text = i;
+        //   option.value = i;
+        //   num_select.add(option);
+        // }
+
+        inputNumberBoxes.innerHTML += 
+        '<a onclick="select_num(this)" id="num_btn'+n+'" class="btn btn-sm btn-danger" href="javascript:void(0)">.</a>';
       }
+      inputNumberBoxes.appendChild(num_select_div);
 
     }
 
     createInputNumberSelectionBoxes();
     update();
     random();
+
+    function select_num(e) {
+      var num_select_div = document.getElementById('num_select_div');
+      num_select_div.innerHTML = "";
+      for (var i=0;i<10;i++) {
+        num_select_div.innerHTML += 
+        '<a onclick="setNumToBtn(this,\''+e.id+'\')" id="num_btn_'+i+'" class="btn btn-sm btn-default" href="javascript:void(0)">'+i+'</a>';
+      }
+    }
+
+    function setNumToBtn(e,id) {
+      var num_select_div = document.getElementById('num_select_div');
+      var num_btn = document.getElementById(id);
+      var index = p.value.indexOf(e.innerHTML);
+      
+      for (var n=0;n<p.maxLength;n++) {
+        var s = document.getElementById('num_btn'+n);
+        if(s.innerHTML == e.innerHTML){s.innerHTML=".";}
+      }
+
+      num_btn.innerHTML = e.innerHTML;
+      num_select_div.innerHTML = "";
+      p.value="";
+      for (var n=0;n<p.maxLength;n++) {
+        var s = document.getElementById('num_btn'+n);
+        p.value += s.innerHTML;
+      }
+      valid();
+    }
 
     function update() {
       p.value="";
@@ -222,8 +264,10 @@
       p.value = noDups(p.value);
 
       for (var n=0;n<p.maxLength;n++) {
-        var s = document.getElementById('s'+n);
-        p.value[n]!=undefined?s.selectedIndex=p.value[n]:s.selectedIndex=-1;
+        // var s = document.getElementById('s'+n);
+        // p.value[n]!=undefined?s.selectedIndex=p.value[n]:s.selectedIndex=-1;
+        var s = document.getElementById('num_btn'+n);
+        p.value[n]!=undefined?s.innerHTML=p.value[n]:s.innerHTML='.';
       }
     }
 
@@ -339,7 +383,7 @@
       p.maxLength = n.selectedIndex + 1;
       createInputNumberSelectionBoxes();
       setTimeout(function(){ 
-      r.innerHTML = "<span style='color:green'>秘密的"+p.maxLength+"位数字已降世...<br/>请聪明的您动动脑筋...<br/>开始猜猜是什么数字吧！"+"</span>";
+      r.innerHTML = "<span style='color:green'>秘密的"+p.maxLength+"位数字已降世...<br/>请聪明的您打开脑洞...<br/>猜猜看是什么神秘数字吧！"+"</span>";
        }, 2000);
       g.style.visibility="visible";
       g_auto.style.visibility="visible";
