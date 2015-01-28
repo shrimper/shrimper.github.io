@@ -145,14 +145,16 @@
         <h1>猜数字!</h1>
         <p class="lead">智力小游戏 </p>
     
-    <input id="eText" class="form-control" type="text" placeholder="Secret number" disabled="true">
+    <input id="eText" class="form-control" type="text" placeholder="Secret number" disabled="true"><br/>
+    <a onclick="return eText.type='text'" href="javascript:void(0)">答案</a>
     <br/>
     <select id="nBit" class="form-control" onchange="random()">
     </select><br/>
+
     
-    <a onclick="autoGuess();" class="btn btn-large btn-success" href="javascript:void(0)">随机猜</a>
-    <a onclick="random();" class="btn btn-large btn-success" href="javascript:void(0)">重新</a>
-    <a onclick="return eText.type='text'" class="btn btn-large btn-success" href="javascript:void(0)">答案</a><br/>
+    <a onclick="autoGuess();" class="btn btn-sm btn-success" href="javascript:void(0)">随机猜</a>
+    <a onclick="random();" class="btn btn-sm btn-info" href="javascript:void(0)">重新</a><br/>
+    
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
     <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br/>
     <input id="pText" onchange="return valid()" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number"><br/>
@@ -260,6 +262,11 @@
       // }while(a<nbit);
       updateUI();
     }
+
+    // function guess(){
+    //   r.innerHTML = "<span style='color:green'>祝您好运！</span>";
+    //   setTimeout(guess_, 1000);
+    // }
     
     function guess() {
       valid();
@@ -300,14 +307,17 @@
     }
     function random() {
       count = 0;
-      r.innerHTML = "";
+      r.innerHTML = "<span style='color:green'>闭上眼睛，冥思神秘数字...</span>";
       reuslts_array = [];
       e.type = "password";
       p.value="";
       e.value=getNumbers();
       p.maxLength = n.selectedIndex + 1;
       createInputNumberSelectionBoxes();
-      r.innerHTML = "<span style='color:green'>"+p.maxLength+"位的秘密数字已经生成<br/>请聪明的您开始猜猜看是什么数字吧！"+"</span>";
+      setTimeout(function(){ 
+      r.innerHTML = "<span style='color:green'>秘密的"+p.maxLength+"位数字已降世...<br/>请聪明的您动动脑筋...<br/>开始猜猜是什么数字吧！"+"</span>";
+       }, 2000);
+      
     }
     function getNumbers() {
       var num,str="";
