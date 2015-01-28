@@ -257,6 +257,8 @@
     }
     
     function guess() {
+      p.value = p.value.replace(/[^0-9]/g, '');
+      p.value = noDups(p.value);
       var guess = p.value, answer = e.value;
       var nbit = n.value;
       var result = "";
@@ -266,7 +268,7 @@
           answer[i] == guess[j]?(i==j?a++:b++):b=b;
         }
       };
-      guess.length!=nbit?result="输入数字犯规":
+      guess.length!=nbit?result="输入数字犯规<br/>":
       
       result = "第"+(++count)+"次猜 "+guess+" － 结果:"+a+"中"+b+"对"+"<br/>";
       a==nbit?result = "<span style='color:red'>恭喜您猜中了！</span><br/>"+"<span style='color:green'>"+result+"</span>":
