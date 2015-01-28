@@ -143,16 +143,18 @@
 
       <div class="jumbotron">
         <h1>猜数字!</h1>
-        <p class="lead">智力小游戏. </p>
+        <p class="lead">智力小游戏 </p>
     
-    <input id="eText" class="form-control" type="text" placeholder="Secret number" disabled="true"><br/>
+    <input id="eText" class="form-control" type="text" placeholder="Secret number" disabled="true">
+    <br/>
     <select id="nBit" class="form-control" onchange="random()">
     </select><br/>
-        
+    
     <a onclick="autoGuess();" class="btn btn-large btn-success" href="javascript:void(0)">随机猜</a>
-    <a onclick="random();" class="btn btn-large btn-success" href="javascript:void(0)">随机数</a><br/>
+    <a onclick="random();" class="btn btn-large btn-success" href="javascript:void(0)">重新</a>
+    <a onclick="return eText.type='text'" class="btn btn-large btn-success" href="javascript:void(0)">答案</a><br/>
     <!-- <input id="rText" class="form-control" type="text" placeholder="Result"> -->
-    <a onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br/>
+    <a id="guess_button" onclick="guess();" class="btn btn-large btn-success" style="width:180px" href="javascript:void(0)">猜</a><br/>
     <input id="pText" onkeyup="updateUI()" class="form-control" type="text" placeholder="your number"><br/>
     <div id="input_div"></div>
     <div id="Result"></div>
@@ -175,9 +177,12 @@
     var p = document.getElementById('pText');
     var e = document.getElementById('eText');
     var n = document.getElementById('nBit');
+    var g = document.getElementById('guess_button');
     var inputNumberBoxes = document.getElementById('input_div');
     var count = 0;
     var a = 0, b = 0;
+
+    e.type = "password";
 
     for (var i=1;i<11;i++) {
       var option = document.createElement("option");
@@ -240,13 +245,14 @@
     }
 
     function autoGuess() {
-      var nbit = n.value;
-      count = 0, a = 0, b = 0;
-      r.innerHTML = "";
-      do {
+      // var nbit = n.value;
+      // count = 0, a = 0, b = 0;
+      count<1?r.innerHTML = "":r.innerHTML =r.innerHTML;
+      // do {
         p.value = getNumbers();
         guess();
-      }while(a<nbit);
+      // }while(a<nbit);
+      updateUI();
     }
     
     function guess() {
@@ -261,23 +267,24 @@
       };
       guess.length!=nbit?result="输入数字犯规":
       result = "第"+(++count)+"次猜 "+guess+" － 结果:"+a+"中"+b+"对";
-      if (count > 20) {
-        a==nbit?r.innerHTML = "<span style='color:red'>"+result+"</span>"+"<br/>":
+      if (count > 50) {
+        a==nbit?r.innerHTML = "<span style='color:green'>"+result+"</span><br/><span style='color:red'>恭喜您猜中了！</span>"+"<br/>":
         r.innerHTML = "<span style='color:black'>"+result+"</span>"+"<br/>";
       } else {
-        a==nbit?r.innerHTML += "<span style='color:red'>"+result+"</span>"+"<br/>":
+        a==nbit?r.innerHTML += "<span style='color:green'>"+result+"</span><br/><span style='color:red'> 恭喜您猜中了！</span>"+"<br/>":
         r.innerHTML += "<span style='color:black'>"+result+"</span>"+"<br/>";
       }
       
-
     }
     function random() {
       count = 0;
       r.innerHTML = "";
+      e.type = "password";
       p.value="";
       e.value=getNumbers();
       p.maxLength = n.selectedIndex + 1;
       createInputNumberSelectionBoxes();
+      r.innerHTML = "<span style='color:green'>"+p.maxLength+"位的秘密数字已经生成，请聪明的您开始猜猜看是什么数字吧！"+"</span>";
     }
     function getNumbers() {
       var num,str="";
