@@ -184,6 +184,7 @@
     var count = 0;
     var a = 0, b = 0;
     var reuslts_array = [];
+    var guessed = [];
 
     e.type = "password";
 
@@ -381,9 +382,6 @@
       // +guess+"</td><td width='80'>"+a+"中"+b+"对"+"</td></tr>"
       // ;
 
-      
-
-      
       a==nbit?
       result = "<span style='color:red'>恭喜您猜中了！</span><br/>"
       +"<tr style='color:green'><td width='80'>第"+(++count)+"次猜</td><td width='80'>"
@@ -394,6 +392,8 @@
       guess.length!=nbit?
       result = "<tr style='color:orange'><td width='80'>第"+(count)+"次猜</td><td width='80'>犯规 =_=!</td><td width='80'>"+0+"中"+0+"有"+"</td></tr>"
       :p.value = guess;
+
+      guessed.push(guess);
 
       reuslts_array.push(result);
 
@@ -407,7 +407,6 @@
       +"<td width='80'>您猜的数字</td>"
       +"<td width='80'>结果</td>"
       +"</tr>"
-      
       ;
 
       var j = 0;
@@ -431,6 +430,7 @@
 
     function random() {
       // var reflesh = document.getElementById('reflesh_button');
+      guessed = [];
       count = 0;
       r.innerHTML = "<span style='color:green'>闭上眼睛，冥思神秘数字...</span>";
       reuslts_array = [];
@@ -468,6 +468,9 @@
           num = getRandomNumber();
         }while(str.indexOf(num)!=-1);
         str += num;
+      }
+      if (guessed.indexOf(str)!=-1) {
+        return getNumbers();
       }
       return str;
     }
