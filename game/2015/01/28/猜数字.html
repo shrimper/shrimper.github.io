@@ -230,6 +230,8 @@
         var s = document.getElementById('num_btn'+n);
         if(s.id != e.id){
           s.className="btn btn-sm btn-info"
+        } else {
+          s.className="btn btn-sm btn-danger"
         }
       }
 
@@ -335,13 +337,14 @@
       // +guess+"</td><td width='80'>"+a+"中"+b+"对"+"</td></tr>"
       // ;
 
+      
 
       
       a==nbit?
       result = "<span style='color:red'>恭喜您猜中了！</span><br/>"
       +"<tr style='color:green'><td width='80'>第"+(++count)+"次猜</td><td width='80'>"
-      +guess+"</td><td width='80'>"+a+"中"+b+"对"+"</td></tr>":
-      result = "<tr style='color:black'><td width='80'>第"+(++count)+"次猜</td><td width='80'>"
+      +guess+"</td><td width='80'>"+a+"中"+b+"对"+"</td></tr>"
+      :result = "<tr style='color:black'><td width='80'>第"+(++count)+"次猜</td><td width='80'>"
       +guess+"</td><td width='80'>"+a+"中"+b+"对"+"</td></tr>";
 
       guess.length!=nbit?
@@ -350,7 +353,11 @@
 
       reuslts_array.push(result);
 
-      output_html = '<hr /><table border="1" cellpadding="5" style="border-color:#eee;border-collapse: collapse;margin: 0 auto;">'
+      (a!=nbit && count>7)?
+      output_html = "<hr /><span style='color:red'>加油呀！再努力想想，很接近答案了吧！</span><br/>"
+      :output_html = "<hr />";
+
+      output_html += '<table border="1" cellpadding="5" style="border-color:#eee;border-collapse: collapse;margin: 0 auto;">'
       +"<tbody><tr>"
       +"<td width='80'>猜次数</td>"
       +"<td width='80'>您猜的数字</td>"
